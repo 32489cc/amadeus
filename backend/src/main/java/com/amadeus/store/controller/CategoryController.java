@@ -37,4 +37,11 @@ public class CategoryController {
     }
     
 
+@PostMapping("/categories/insert")
+    public ResponseEntity<?> insertCategory(@RequestBody CategoryRequestDTO  categoryRequestDTO) {
+        //TODO: process POST request
+        
+        return null;
+    }
+
 }
