@@ -1,0 +1,68 @@
+# ===================== 操作系统 =====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===================== IDE / 编辑器 =====================
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+
+# ===================== Java / Spring Boot (Maven) =====================
+target/
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+
+# Spring Boot 本地配置（含敏感信息，按需调整）
+backend/src/main/resources/application-local.yml
+backend/src/main/resources/application-local.properties
+backend/src/main/resources/application-secret.*
+
+# ===================== Node.js / Vue / Vite (前端) =====================
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# 环境变量文件（含密钥）
+.env
+.env.*
+!.env.example
+
+# ===================== 日志 / 临时文件 =====================
+logs/
+*.log
+*.tmp
+*.bak
+*.pid
+
+# ===================== 项目特定忽略 =====================
+.claude/
+design_handoff_amadeus_store/
+handoff/
+docs/
+SpringBoot-Build-CICD-完整指南.md
+CLAUDE.md

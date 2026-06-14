@@ -1,0 +1,50 @@
+/* ============================================================
+   AMADEUS Design Tokens — ported from store.css :root
+   ============================================================ */
+:root {
+  /* Background / Surface */
+  --bg: #FFFFFF;
+  --alt: #F5F3EF;
+  --alt2: #FBFAF8;
+
+  /* Text */
+  --ink: #1B1A18;
+  --ink2: #56524C;
+  --muted: #94908A;
+
+  /* Borders */
+  --line: #E7E3DC;
+  --line2: #D8D3C9;
+
+  /* Accent */
+  --red: #D81E2C;
+  --red-d: #B5121E;
+
+  /* Tag / Status colors */
+  --blue: #1F66B0;     /* 予約 pre-order */
+  --green: #2E8B57;    /* 再販 restock */
+  --purple: #7A4BBF;   /* 抽選 lottery */
+  --gold: #B5862B;     /* 限定 limited / rank #1 */
+
+  /* Navigation */
+  --navy: #171522;
+
+  /* Rank badge specials */
+  --rank-silver: #9AA0A6;
+  --rank-bronze: #B07A45;
+
+  /* Typography */
+  --sans: "Noto Sans JP", sans-serif;
+  --grot: "Archivo", sans-serif;
+
+  /* Spacing */
+  --wrap-px: 40px;
+  --gap-card: 18px;
+  --gap-series: 14px;
+  --gap-qcat: 10px;
+
+  /* Shape */
+  --radius-card: 4px;
+  --radius-banner: 5px;
+  --radius-tag: 2px;
+}

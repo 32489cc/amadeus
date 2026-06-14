@@ -1,0 +1,84 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api    # 所有接口统一加 /api 前缀，匹配前端 baseURL 与契约 base URL
+
+spring:
+  application:
+    name: amadeus-store
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:amadeus}?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
+    username: ${DB_USER:amadeus}
+    password: ${DB_PASSWORD:amadeus}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: amadeus-pool
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 300000   # 5 minutes default
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# MyBatis
+mybatis:
+  # XML Mapper 的位置（放在 resources/mapper/ 下）
+  mapper-locations: classpath*:mapper/**/*.xml
+  # 实体类型别名包（@Result/resultType 可直接写类名，免全限定名）
+  type-aliases-package: com.amadeus.store.entity
+  configuration:
+    # snake_case 列名 → camelCase 字段自动映射（app_user.member_rank → memberRank）
+    map-underscore-to-camel-case: true
+    # null 值也调用 setter，便于映射可空列
+    call-setters-on-nulls: true
+    # 控制台打印执行的 SQL（开发期方便调试）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+amadeus:
+  jwt:
+    secret: ${JWT_SECRET:amadeus-store-super-secret-key-please-change-in-production-2026}
+    expiration: 2592000      # 30 days in seconds
+    expiration-remember: 7776000  # 90 days in seconds
+  session:
+    ttl: 2592000             # 30 days in seconds
+    ttl-remember: 7776000    # 90 days in seconds
+  cors:
+    allowed-origins:
+      - http://localhost:5173
+      - http://localhost:3000
+      - http://127.0.0.1:5173
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    com.amadeus.store: DEBUG
+    org.springframework.data.redis: INFO
