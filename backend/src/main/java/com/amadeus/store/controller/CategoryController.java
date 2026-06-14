@@ -30,7 +30,7 @@ public class CategoryController {
     }
     
     @PostMapping("/categories/update")
-    public String postMethodName(@RequestBody CategoryRequestDTO  categoryRequestDTO) {
+    public ResponseEntity<?> postMethodName(@RequestBody CategoryRequestDTO  categoryRequestDTO) {
         //TODO: process POST request
         
         return categoryService.updatecategory(categoryRequestDTO);
