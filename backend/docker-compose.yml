@@ -43,8 +43,29 @@ services:
       start_period: 30s
     restart: unless-stopped
 
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: amadeus-rabbitmq
+    ports:
+      - "5672:5672"    # AMQP 协议端口（应用连接用）
+      - "15672:15672"  # 管理界面 Web UI（浏览器访问）
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-amadeus}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-amadeus}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
 volumes:
   redis-data:
     driver: local
   mysql-data:
+    driver: local
+  rabbitmq-data:
     driver: local
